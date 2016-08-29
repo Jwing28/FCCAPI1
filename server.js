@@ -3,11 +3,14 @@ var app = express();
 var moment = require('moment');
 var port = process.env.PORT || 8080;
 var path = require('path');
+
 //takes care of "/" path
 app.use(express.static(path.resolve(__dirname, 'myClient')));
+
 //any other file path
 app.get("/:query",function(req,res){
   var date;
+  
   //look path with 8 or more
   if(/^\d{8,}$/.test(req.params.query)) {
     date = moment(req.params.query, "X");
